@@ -1,0 +1,20 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "plugins": ["@typescript-eslint"],
+    "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+    "rules": {
+        "no-console": "error",
+        "no-var": "error",
+        "eqeqeq": "error",
+        "no-undef": "warn",
+        "@typescript-eslint/no-unused-vars": "error",
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "no-useless-escape": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "error"
+    }
+}
