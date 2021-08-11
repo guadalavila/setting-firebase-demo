@@ -11,5 +11,7 @@ interface FirebaseConfiguration {
 }
 
 export function initFirebase(firebaseConfig : FirebaseConfiguration): void {
-    firebase.initializeApp(firebaseConfig);
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
 }
