@@ -1,0 +1,50 @@
+{
+    "name": "@guadalavila/setting-firebase",
+    "version": "1.0.0",
+    "description": "Libreria de configuración.",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
+        "format": "eslint src/**/*.ts --fix",
+        "prettier": "npx prettier --write '*/**/*.ts'",
+        "test": "yarn build && jest",
+        "coverage": "jest --coverage"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/guadalavila/setting-firebase-demo.git"
+    },
+    "devDependencies": {
+        "@tsconfig/recommended": "^1.0.1",
+        "@types/jest": "^26.0.23",
+        "@typescript-eslint/eslint-plugin": "^4.28.4",
+        "@typescript-eslint/parser": "^4.28.4",
+        "eslint": "^7.31.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^3.4.0",
+        "husky": "^7.0.1",
+        "jest": "^27.0.6",
+        "prettier": "^2.3.2",
+        "ts-jest": "^27.0.3"
+    },
+    "dependencies": {
+        "typescript": "^4.3.5"
+    },
+    "files": [
+        "/dist"
+    ],
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{js,ts}": [
+            "eslint --fix"
+        ]
+    },
+    "author": "guadalavila",
+    "license": "ISC"
+}
