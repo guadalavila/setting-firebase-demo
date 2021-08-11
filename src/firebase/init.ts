@@ -11,8 +11,7 @@ interface FirebaseConfiguration {
 }
 
 export function initFirebase(firebaseConfig : FirebaseConfiguration): void {
-    // eslint-disable-next-line no-undef
-    console.log(firebase.apps);
+    console.log(firebase);
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
