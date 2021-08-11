@@ -1,6 +1,7 @@
 import { add } from './math/add';
 import { subtract } from './math/subtract';
-import { initFirebase, getData } from './firebase/functions';
+import { initFirebase } from './firebase/init';
+import { getData } from './firebase/getData';
 
 
 export {add, subtract, initFirebase, getData};
