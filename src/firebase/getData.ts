@@ -16,9 +16,16 @@ export function getData(firebaseConfig: FirebaseConfiguration) {
     // remoteConfig.defaultConfig = {
     //     welcome_message: 'Welcome',
     // };
+
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
+    const remoteConfig = firebase.remoteConfig();
+
+    remoteConfig.settings = {
+        minimumFetchIntervalMillis: 3600,
+        fetchTimeoutMillis: 500
+    };
     firebase
         .remoteConfig()
         .fetchAndActivate()
@@ -28,6 +35,7 @@ export function getData(firebaseConfig: FirebaseConfiguration) {
             return data;
         })
         .catch((err) => {
+            console.log('errr');
             console.log(err);
             throw err;
         });
