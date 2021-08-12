@@ -31,42 +31,8 @@ export function fetchAllData(firebaseConfig: FirebaseConfiguration): any {
         throw new Error(err.message);
     }
 }
-type TypeKey = {
-    type: 'boolean' | 'string' | 'number';
-};
 
-
-export function fetchValue(firebaseConfig: FirebaseConfiguration, key: string, typeKey: TypeKey){
-    try {
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
-        const remoteConfig = firebase.remoteConfig();
-        remoteConfig
-            .fetchAndActivate()
-            .then(() => {
-                console.log(remoteConfig.getValue(key));
-                switch (typeKey.type) {
-                    case 'string':
-                        return remoteConfig.getValue(key).asString();
-                    case 'boolean':
-                        return remoteConfig.getValue(key).asBoolean();
-                    case 'number':
-                        return remoteConfig.getValue(key).asNumber();
-                    default:
-                        return '';
-                }
-            })
-            .catch(() => {
-                throw new Error('Failed to fetch and activate remote config values.');
-            });
-    } catch (err) {
-        throw new Error(err.message);
-    }
-}
-
-
-export function fetchValue2(firebaseConfig: FirebaseConfiguration, key: string): Promise<string>{
+export function fetchStringValue(firebaseConfig: FirebaseConfiguration, key: string): Promise<string>{
     return new Promise((resolve, reject) => {
         try {
             if (!firebase.apps.length) {
@@ -76,13 +42,55 @@ export function fetchValue2(firebaseConfig: FirebaseConfiguration, key: string):
             remoteConfig
                 .fetchAndActivate()
                 .then(() => {
-                    console.log(remoteConfig.getValue(key).asString());
                     const value: string = remoteConfig.getValue(key).asString();
-                    console.log(value);
                     resolve(value);
                 })
                 .catch(() => {
                     reject('Failed to fetch and activate remote config values.');
+                });
+        } catch (err) {
+            reject(err.message);
+        }
+    });
+}
+
+export function fetchBooleanValue(firebaseConfig: FirebaseConfiguration, key: string): Promise<boolean>{
+    return new Promise((resolve, reject) => {
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            const remoteConfig = firebase.remoteConfig();
+            remoteConfig
+                .fetchAndActivate()
+                .then(() => {
+                    const value: boolean = remoteConfig.getValue(key).asBoolean();
+                    resolve(value);
+                })
+                .catch(() => {
+                    reject('Failed to fetch and activate remote config boolean value.');
+                });
+        } catch (err) {
+            reject(err.message);
+        }
+    });
+}
+
+export function fetchNumberValue(firebaseConfig: FirebaseConfiguration, key: string): Promise<number>{
+    return new Promise((resolve, reject) => {
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            const remoteConfig = firebase.remoteConfig();
+            remoteConfig
+                .fetchAndActivate()
+                .then(() => {
+                    const value: number = remoteConfig.getValue(key).asNumber();
+                    resolve(value);
+                })
+                .catch(() => {
+                    reject('Failed to fetch and activate remote config number value.');
                 });
         } catch (err) {
             reject(err.message);
