@@ -1,5 +1,5 @@
 import { add } from './math/add';
 import { subtract } from './math/subtract';
-import { fetchAllData, fetchStringValue } from './helpers/functions';
+import { fetchAllData, fetchValue } from './helpers/functions';
 
-export {add, subtract, fetchAllData, fetchStringValue};
+export {add, subtract, fetchAllData, fetchValue};
