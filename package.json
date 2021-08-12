@@ -1,8 +1,9 @@
 {
     "name": "@guadalavila/setting-firebase",
-    "version": "1.0.23",
+    "version": "1.0.24",
     "description": "Libreria de configuración.",
     "main": "dist/index.js",
+    "module": "dist/index.module.js",
     "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc",
@@ -10,7 +11,8 @@
         "format": "eslint src/**/*.ts --fix",
         "prettier": "npx prettier --write '*/**/*.ts'",
         "test": "yarn build && jest",
-        "coverage": "jest --coverage"
+        "coverage": "jest --coverage",
+        "publish": "yarn build && npm publish"
     },
     "repository": {
         "type": "git",
@@ -47,5 +49,6 @@
         ]
     },
     "author": "guadalavila",
-    "license": "ISC"
+    "license": "ISC",
+    "source": "src/index.ts"
 }
