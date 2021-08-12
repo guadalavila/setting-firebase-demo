@@ -66,7 +66,7 @@ export function fetchValue(firebaseConfig: FirebaseConfiguration, key: string, t
 }
 
 
-export function fetchValue2(firebaseConfig: FirebaseConfiguration, key: string, typeKey: TypeKey): Promise<string | number | boolean>{
+export function fetchValue2(firebaseConfig: FirebaseConfiguration, key: string): Promise<string>{
     return new Promise((resolve, reject) => {
         try {
             if (!firebase.apps.length) {
@@ -76,31 +76,10 @@ export function fetchValue2(firebaseConfig: FirebaseConfiguration, key: string, 
             remoteConfig
                 .fetchAndActivate()
                 .then(() => {
-                    console.log(remoteConfig.getValue(key));
-                    switch (typeKey.type) {
-                        case 'string':{
-                            const value: string = remoteConfig.getValue(key).asString();
-                            console.log(value);
-                             resolve(value);
-                            break;
-                        }
-                        case 'boolean':{
-                            const value: boolean = remoteConfig.getValue(key).asBoolean();
-                            console.log(value);
-                            resolve(value);
-                            break;
-                        }
-                        case 'number':{
-                            const value: number = remoteConfig.getValue(key).asNumber();
-                            console.log(value);
-                            resolve(value);
-                            break;
-                        }
-                        default:
-                            console.log('default');
-                            resolve('');
-                            break;
-                    }
+                    console.log(remoteConfig.getValue(key).asString());
+                    const value: string = remoteConfig.getValue(key).asString();
+                    console.log(value);
+                    resolve(value);
                 })
                 .catch(() => {
                     reject('Failed to fetch and activate remote config values.');

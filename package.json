@@ -1,6 +1,6 @@
 {
     "name": "@guadalavila/setting-firebase",
-    "version": "1.0.19",
+    "version": "1.0.20",
     "description": "Libreria de configuración.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
