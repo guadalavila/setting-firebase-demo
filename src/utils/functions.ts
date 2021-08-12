@@ -18,6 +18,10 @@ export function fetchAllData(firebaseConfig: FirebaseConfiguration): Promise<any
                 firebase.initializeApp(firebaseConfig);
             }
             const remoteConfig = firebase.remoteConfig();
+            remoteConfig.settings = {
+                minimumFetchIntervalMillis: 500,
+                fetchTimeoutMillis: 3600
+            };
             remoteConfig
                 .fetchAndActivate()
                 .then(() => {
@@ -40,6 +44,10 @@ export function fetchStringValue(firebaseConfig: FirebaseConfiguration, key: str
                 firebase.initializeApp(firebaseConfig);
             }
             const remoteConfig = firebase.remoteConfig();
+            remoteConfig.settings = {
+                minimumFetchIntervalMillis: 500,
+                fetchTimeoutMillis: 3600
+            };
             remoteConfig
                 .fetchAndActivate()
                 .then(() => {
@@ -62,6 +70,10 @@ export function fetchBooleanValue(firebaseConfig: FirebaseConfiguration, key: st
                 firebase.initializeApp(firebaseConfig);
             }
             const remoteConfig = firebase.remoteConfig();
+            remoteConfig.settings = {
+                minimumFetchIntervalMillis: 500,
+                fetchTimeoutMillis: 3600
+            };
             remoteConfig
                 .fetchAndActivate()
                 .then(() => {
@@ -84,6 +96,10 @@ export function fetchNumberValue(firebaseConfig: FirebaseConfiguration, key: str
                 firebase.initializeApp(firebaseConfig);
             }
             const remoteConfig = firebase.remoteConfig();
+            remoteConfig.settings = {
+                minimumFetchIntervalMillis: 500,
+                fetchTimeoutMillis: 3600
+            };
             remoteConfig
                 .fetchAndActivate()
                 .then(() => {
