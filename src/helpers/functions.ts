@@ -78,16 +78,26 @@ export function fetchValue2(firebaseConfig: FirebaseConfiguration, key: string, 
                 .then(() => {
                     console.log(remoteConfig.getValue(key));
                     switch (typeKey.type) {
-                        case 'string':
-                             resolve(remoteConfig.getValue(key).asString());
+                        case 'string':{
+                            const value: string = remoteConfig.getValue(key).asString();
+                            console.log(value);
+                             resolve(value);
                             break;
-                        case 'boolean':
-                            resolve(remoteConfig.getValue(key).asBoolean());
+                        }
+                        case 'boolean':{
+                            const value: boolean = remoteConfig.getValue(key).asBoolean();
+                            console.log(value);
+                            resolve(value);
                             break;
-                        case 'number':
-                            resolve(remoteConfig.getValue(key).asNumber());
+                        }
+                        case 'number':{
+                            const value: number = remoteConfig.getValue(key).asNumber();
+                            console.log(value);
+                            resolve(value);
                             break;
+                        }
                         default:
+                            console.log('default');
                             resolve('');
                             break;
                     }
