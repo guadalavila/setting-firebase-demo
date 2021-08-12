@@ -11,7 +11,7 @@ interface FirebaseConfiguration {
     measurementId: string;
 }
 
-export function fetchAllData(firebaseConfig: FirebaseConfiguration) {
+export function fetchAllData(firebaseConfig: FirebaseConfiguration): any {
     try {
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
@@ -35,7 +35,8 @@ type TypeKey = {
     type: 'boolean' | 'string' | 'number';
 };
 
-export function fetchValue(firebaseConfig: FirebaseConfiguration, key: string, typeKey: TypeKey) {
+
+export function fetchValue(firebaseConfig: FirebaseConfiguration, key: string, typeKey: TypeKey){
     try {
         if (!firebase.apps.length) {
             firebase.initializeApp(firebaseConfig);
@@ -62,4 +63,40 @@ export function fetchValue(firebaseConfig: FirebaseConfiguration, key: string, t
     } catch (err) {
         throw new Error(err.message);
     }
+}
+
+
+export function fetchValue2(firebaseConfig: FirebaseConfiguration, key: string, typeKey: TypeKey): Promise<string | number | boolean>{
+    return new Promise((resolve, reject) => {
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            const remoteConfig = firebase.remoteConfig();
+            remoteConfig
+                .fetchAndActivate()
+                .then(() => {
+                    console.log(remoteConfig.getValue(key));
+                    switch (typeKey.type) {
+                        case 'string':
+                             resolve(remoteConfig.getValue(key).asString());
+                            break;
+                        case 'boolean':
+                            resolve(remoteConfig.getValue(key).asBoolean());
+                            break;
+                        case 'number':
+                            resolve(remoteConfig.getValue(key).asNumber());
+                            break;
+                        default:
+                            resolve('');
+                            break;
+                    }
+                })
+                .catch(() => {
+                    reject('Failed to fetch and activate remote config values.');
+                });
+        } catch (err) {
+            reject(err.message);
+        }
+    });
 }
