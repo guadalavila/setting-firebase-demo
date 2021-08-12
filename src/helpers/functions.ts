@@ -11,25 +11,26 @@ interface FirebaseConfiguration {
     measurementId: string;
 }
 
-export function fetchAllData(firebaseConfig: FirebaseConfiguration): any {
-    try {
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
+export function fetchAllData(firebaseConfig: FirebaseConfiguration): Promise<any> {
+    return new Promise((resolve, reject) => {
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            const remoteConfig = firebase.remoteConfig();
+            remoteConfig
+                .fetchAndActivate()
+                .then(() => {
+                    const value = remoteConfig.getAll();
+                    resolve(value);
+                })
+                .catch(() => {
+                    reject('Failed to fetch and activate remote config values.');
+                });
+        } catch (err) {
+            reject(err.message);
         }
-        const remoteConfig = firebase.remoteConfig();
-        remoteConfig
-            .fetchAndActivate()
-            .then(() => {
-                const remoteConfigData = remoteConfig.getAll();
-                console.log(remoteConfigData);
-                return remoteConfigData;
-            })
-            .catch(() => {
-                throw new Error('Failed to fetch and activate remote config values.');
-            });
-    } catch (err) {
-        throw new Error(err.message);
-    }
+    });
 }
 
 export function fetchStringValue(firebaseConfig: FirebaseConfiguration, key: string): Promise<string>{
@@ -46,7 +47,7 @@ export function fetchStringValue(firebaseConfig: FirebaseConfiguration, key: str
                     resolve(value);
                 })
                 .catch(() => {
-                    reject('Failed to fetch and activate remote config values.');
+                    reject('Failed to fetch and activate remote config string value.');
                 });
         } catch (err) {
             reject(err.message);
