@@ -1,22 +1,21 @@
 {
     "name": "@guadalavila/setting-firebase",
-    "version": "1.0.40",
-    "description": "Libreria de configuración.",
+    "version": "1.0.42",
+    "description": "Libreria de configuraciones.",
     "main": "dist/index.js",
     "module": "dist/index.module.js",
-    "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc",
+        "cleanup": "rm -rf dist",
+        "publish": "yarn cleanup && yarn build && npm publish",
         "lint": "eslint '*/**/*.{js,ts}' --quiet --fix",
         "format": "eslint src/**/*.ts --fix",
         "prettier": "npx prettier --write '*/**/*.ts'",
         "test": "yarn build && jest",
-        "coverage": "jest --coverage",
-        "publish": "yarn build && npm publish"
+        "coverage": "jest --coverage"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/guadalavila/setting-firebase-demo.git"
+    "dependencies": {
+        "firebase": "^8.9.1"
     },
     "devDependencies": {
         "@tsconfig/recommended": "^1.0.1",
@@ -29,15 +28,21 @@
         "husky": "^7.0.1",
         "jest": "^27.0.6",
         "prettier": "^2.3.2",
-        "ts-jest": "^27.0.3"
-    },
-    "dependencies": {
-        "firebase": "^8.9.1",
+        "ts-jest": "^27.0.3",
         "typescript": "^4.3.5"
     },
     "files": [
-        "/dist"
+        "dist",
+        "README.md",
+        ".gitignore",
+        "package.json",
+        "yarn.lock"
     ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/guadalavila/setting-firebase-demo.git"
+      },
+    "homepage": "https://github.com/guadalavila/setting-firebase-demo",
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged"
@@ -50,5 +55,6 @@
     },
     "author": "guadalavila",
     "license": "ISC",
-    "source": "src/index.ts"
+    "source": "src/index.ts",
+    "types": "dist/index.d.ts"
 }
