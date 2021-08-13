@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import firebase from 'firebase/app';
 import 'firebase/remote-config';
 import { FirebaseConfiguration } from './models/FirebaseConfiguration';
 import { ACCOUNT_KEY, EXPLORE_B2B_KEY, EXPLORE_B2C_KEY, PORTABILITY_ENABLED, PROFILE_KEY, SUPPORT_KEY, SUPPORT_TEXT } from './utils/const';
 
-class Configuration {
+class ConfigurationApp {
     constructor() {}
 
     initConfig(firebaseConfig: FirebaseConfiguration) {
@@ -81,7 +80,7 @@ class Configuration {
     }
 }
 
-const configInstance = new Configuration();
+const configuration = new ConfigurationApp();
 
-Object.freeze(configInstance);
-export default configInstance;
+Object.freeze(configuration);
+export default configuration;
