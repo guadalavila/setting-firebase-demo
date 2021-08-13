@@ -1,10 +1,12 @@
-# @guadalavila/configuration
+# @guadalavila/configuration 🛠️
 
 ## Instalación
 
 ```shell
 npm install --save @guadalavila/configuration
 ```
+
+o
 
 ```shell
 yarn add @guadalavila/configuration
@@ -33,15 +35,15 @@ configuration.initConfig(firebaseConfig);
 
 ## Funciones
 
-| Method                                            | Return Type        |
-| ------------------------------------------------- | ------------------ |
-| [getUpdateExploreB2C()](#getupdateexploreb2c)     | `Promise<string>`  |
-| [getUpdateExploreB2B()](#getupdateexploreb2b)     | `Promise<string>`  |
-| [getUpdateAccount()](#getupdateaccount)           | `Promise<string>`  |
-| [getUpdateProfile()](#getupdateprofile)           | `Promise<string>`  |
-| [getUpdateSupport()](#getupdatesupport)           | `Promise<string>`  |
-| [getTextSupport()](#gettextsupport)               | `Promise<string>`  |
-| [getPortabilityEnabled()](#getportabilityenabled) | `Promise<boolean>` |
+| Method                                            | Return Type        | Key                    |
+| ------------------------------------------------- | ------------------ | ---------------------- |
+| [getUpdateExploreB2C()](#getupdateexploreb2c)     | `Promise<string>`  | `UPDATE_DESCUBRI_B2C`  |
+| [getUpdateExploreB2B()](#getupdateexploreb2b)     | `Promise<string>`  | `UPDATE_DESCUBRI_B2B`  |
+| [getUpdateAccount()](#getupdateaccount)           | `Promise<string>`  | `UPDATE_CUENTA`        |
+| [getUpdateProfile()](#getupdateprofile)           | `Promise<string>`  | `UPDATE_PERFIL`        |
+| [getUpdateSupport()](#getupdatesupport)           | `Promise<string>`  | `UPDATE_SOPORTE`       |
+| [getTextSupport()](#gettextsupport)               | `Promise<string>`  | `text_soporte`         |
+| [getPortabilityEnabled()](#getportabilityenabled) | `Promise<boolean>` | `portabilidad_enabled` |
 
 ---
 
