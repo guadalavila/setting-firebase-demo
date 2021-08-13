@@ -2,19 +2,19 @@
 class Configuration {
     constructor() {}
 
-    method1() {
-        return 'prop1';
+    public static getUpdateDescubriB2C(): string {
+        return '20210810';
     }
 
-    method2() {
-        return 'prop2';
+     public static getUpdateDescubriB2B(): string {
+        return '20210812';
     }
 }
 
-const configurationInstance = new Configuration();
+const configInstance = new Configuration();
 
-Object.freeze(configurationInstance);
-export default configurationInstance;
+Object.freeze(configInstance);
+export default configInstance;
 
 // class Configuration {
 
