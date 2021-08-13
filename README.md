@@ -3,20 +3,20 @@
 ## Instalación
 
 ```shell
-npm install --save @guadalavila/configuration
+yarn add @guadalavila/configuration
 ```
 
 o
 
 ```shell
-yarn add @guadalavila/configuration
+npm install --save @guadalavila/configuration
 ```
 
 ## Uso
 
 ---
 
-Se debe inicializar enviando la configuración de Firebase.
+Se debe inicializar, enviando la configuración de Firebase.
 
 ```js
 import { configuration } from '@guadalavila/configuration';

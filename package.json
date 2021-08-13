@@ -1,6 +1,6 @@
 {
     "name": "@guadalavila/setting-firebase",
-    "version": "1.0.44",
+    "version": "1.0.45",
     "description": "Libreria de configuraciones.",
     "main": "dist/index.js",
     "module": "dist/index.module.js",
