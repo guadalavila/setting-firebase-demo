@@ -2,11 +2,11 @@
 class Configuration {
     constructor() {}
 
-    public static getUpdateDescubriB2C(): string {
+    getUpdateDescubriB2C(): string {
         return '20210810';
     }
 
-     public static getUpdateDescubriB2B(): string {
+    getUpdateDescubriB2B(): string {
         return '20210812';
     }
 }
