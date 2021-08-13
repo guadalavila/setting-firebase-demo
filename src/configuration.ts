@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/remote-config';
 import { FirebaseConfiguration } from './models/FirebaseConfiguration';
-import { ACCOUNT_KEY, EXPLORE_B2B_KEY, EXPLORE_B2C_KEY, PORTABILITY_ENABLED, PROFILE_KEY, SUPPORT_KEY, SUPPORT_TEXT } from './utils/const';
+import { ACCOUNT_KEY, EXPLORE_B2B_KEY, EXPLORE_B2C_KEY, PORTABILITY_ENABLED_KEY, PROFILE_KEY, SUPPORT_KEY, SUPPORT_TEXT_KEY } from './utils/const';
 
 class ConfigurationApp {
     constructor() {}
@@ -42,12 +42,12 @@ class ConfigurationApp {
     }
 
     getTextSupport(): Promise<string> {
-        const value = this.getStringValue(SUPPORT_TEXT);
+        const value = this.getStringValue(SUPPORT_TEXT_KEY);
         return value;
     }
 
     getPortabilityEnabled(): Promise<boolean> {
-        const value = this.getBooleanValue(PORTABILITY_ENABLED);
+        const value = this.getBooleanValue(PORTABILITY_ENABLED_KEY);
         return value;
     }
 

@@ -37,11 +37,11 @@ configuration.initConfig(firebaseConfig);
 
 | Method                                            | Return Type        | Key                    |
 | ------------------------------------------------- | ------------------ | ---------------------- |
-| [getUpdateExploreB2C()](#getupdateexploreb2c)     | `Promise<string>`  | `UPDATE_DESCUBRI_B2C`  |
-| [getUpdateExploreB2B()](#getupdateexploreb2b)     | `Promise<string>`  | `UPDATE_DESCUBRI_B2B`  |
-| [getUpdateAccount()](#getupdateaccount)           | `Promise<string>`  | `UPDATE_CUENTA`        |
-| [getUpdateProfile()](#getupdateprofile)           | `Promise<string>`  | `UPDATE_PERFIL`        |
-| [getUpdateSupport()](#getupdatesupport)           | `Promise<string>`  | `UPDATE_SOPORTE`       |
+| [getUpdateExploreB2C()](#getupdateexploreb2c)     | `Promise<string>`  | `UPDATE_EXPLORE_B2C`   |
+| [getUpdateExploreB2B()](#getupdateexploreb2b)     | `Promise<string>`  | `UPDATE_EXPLORE_B2B`   |
+| [getUpdateAccount()](#getupdateaccount)           | `Promise<string>`  | `UPDATE_ACCOUNT`       |
+| [getUpdateProfile()](#getupdateprofile)           | `Promise<string>`  | `UPDATE_PROFILE`       |
+| [getUpdateSupport()](#getupdatesupport)           | `Promise<string>`  | `UPDATE_SUPPORT`       |
 | [getTextSupport()](#gettextsupport)               | `Promise<string>`  | `text_soporte`         |
 | [getPortabilityEnabled()](#getportabilityenabled) | `Promise<boolean>` | `portabilidad_enabled` |
 
@@ -49,7 +49,7 @@ configuration.initConfig(firebaseConfig);
 
 ### getUpdateExploreB2C()
 
-Devuelve el valor de `UPDATE_DESCUBRI_B2C`
+Devuelve el valor de `UPDATE_EXPLORE_B2C`
 
 #### Ejemplo
 
@@ -59,7 +59,7 @@ const value: string = await configuration.getUpdateExploreB2C(); // "20210813"
 
 ### getUpdateExploreB2B()
 
-Devuelve el valor de `UPDATE_DESCUBRI_B2B`
+Devuelve el valor de `UPDATE_EXPLORE_B2B`
 
 #### Ejemplo
 
@@ -69,7 +69,7 @@ const value: string = await configuration.getUpdateExploreB2B(); // "20210813"
 
 ### getUpdateAccount()
 
-Devuelve el valor de `UPDATE_CUENTA`
+Devuelve el valor de `UPDATE_ACCOUNT`
 
 #### Ejemplo
 
@@ -79,7 +79,7 @@ const value: string = await configuration.getUpdateAccount(); // "20210810"
 
 ### getUpdateProfile()
 
-Devuelve el valor de `UPDATE_PERFIL`
+Devuelve el valor de `UPDATE_PROFILE`
 
 #### Ejemplo
 
@@ -89,7 +89,7 @@ const value: string = await configuration.getUpdateProfile(); // "20210811"
 
 ### getUpdateSupport()
 
-Devuelve el valor de `UPDATE_SOPORTE`
+Devuelve el valor de `UPDATE_SUPPORT`
 
 #### Ejemplo
 
