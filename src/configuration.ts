@@ -2,56 +2,82 @@
 import firebase from 'firebase/app';
 import 'firebase/remote-config';
 import { FirebaseConfiguration } from './models/FirebaseConfiguration';
-import { ACCOUNT_KEY, PROFILE_KEY } from './utils/const';
+import { ACCOUNT_KEY, EXPLORE_B2B_KEY, EXPLORE_B2C_KEY, PORTABILITY_ENABLED, PROFILE_KEY, SUPPORT_KEY, SUPPORT_TEXT } from './utils/const';
 
 class Configuration {
     constructor() {}
 
-    private remoteConfig: any;
-
     initConfig(firebaseConfig: FirebaseConfiguration) {
-        console.log('inicializando Config');
         try {
             if (!firebase.apps.length) {
                 firebase.initializeApp(firebaseConfig);
             }
-            this.remoteConfig = firebase.remoteConfig();
-            this.remoteConfig.settings = {
-                minimumFetchIntervalMillis: 500,
-                fetchTimeoutMillis: 3600,
-            };
         } catch (err) {
-            console.log(err.message);
+            throw new Error('Cant initConfig: '+ err.message);
         }
     }
 
-    getUpdateExploreB2C(): string {
-        return '20210810';
-    }
-
-    getUpdateExploreB2B(): string {
-        return '20210812';
-    }
-
-    getUpdateAccount(): string {
-        return this.getStringValue(ACCOUNT_KEY);
-    }
-
-    getUpdateProfile(): string {
-        return this.getStringValue(PROFILE_KEY);
-    }
-
-    getUpdateSupport(): string {
-        return '0';
-    }
-
-    private getStringValue(key: string): string {
-        console.log('se quiere recuperar: ' + key);
-        let value = '';
-        this.remoteConfig.fetchAndActivate().then(() => {
-            value = this.remoteConfig.getValue(key).asString();
-        });
+    getUpdateExploreB2C(): Promise<string> {
+        const value = this.getStringValue(EXPLORE_B2C_KEY);
         return value;
+    }
+
+    getUpdateExploreB2B(): Promise<string> {
+        const value = this.getStringValue(EXPLORE_B2B_KEY);
+        return value;
+    }
+
+    getUpdateAccount(): Promise<string> {
+        const value = this.getStringValue(ACCOUNT_KEY);
+        return value;
+    }
+
+    getUpdateProfile(): Promise<string> {
+        const value = this.getStringValue(PROFILE_KEY);
+        return value;
+    }
+
+    getUpdateSupport(): Promise<string> {
+        const value = this.getStringValue(SUPPORT_KEY);
+        return value;
+    }
+
+    getTextSupport(): Promise<string> {
+        const value = this.getStringValue(SUPPORT_TEXT);
+        return value;
+    }
+
+    getPortabilityEnabled(): Promise<boolean> {
+        const value = this.getBooleanValue(PORTABILITY_ENABLED);
+        return value;
+    }
+
+    private async getStringValue(key: string): Promise<string> {
+        return new Promise((resolve) => {
+            const remoteConfig = firebase.remoteConfig();
+            remoteConfig.settings = {
+                minimumFetchIntervalMillis: 500,
+                fetchTimeoutMillis: 3600,
+            };
+            remoteConfig.fetchAndActivate().then(() => {
+                const value = remoteConfig.getValue(key).asString();
+                resolve(value);
+            });
+        });
+    }
+
+    private async getBooleanValue(key: string): Promise<boolean> {
+        return new Promise((resolve) => {
+            const remoteConfig = firebase.remoteConfig();
+            remoteConfig.settings = {
+                minimumFetchIntervalMillis: 500,
+                fetchTimeoutMillis: 3600,
+            };
+            remoteConfig.fetchAndActivate().then(() => {
+                const value = remoteConfig.getValue(key).asBoolean();
+                resolve(value);
+            });
+        });
     }
 }
 
@@ -59,32 +85,3 @@ const configInstance = new Configuration();
 
 Object.freeze(configInstance);
 export default configInstance;
-
-// class Configuration {
-
-//     private static instance: Configuration;
-
-//     // eslint-disable-next-line @typescript-eslint/no-empty-function
-//     private constructor() { }
-
-//     public static getInstance(): Configuration {
-//         if (!Configuration.instance) {
-//             Configuration.instance = new Configuration();
-//         }
-//         return Configuration.instance;
-//     }
-
-//     public static getProp1(): string {
-//         return 'prop1';
-//     }
-//     public static getProp2(): string {
-//         return 'prop1';
-//     }
-//     public static  initConfiguration(): void {
-//         console.log('Se inicia SDK');
-//         // throw new Error('Method not implemented.');
-//     }
-
-// }
-
-// export default configurationInstance;
